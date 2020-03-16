@@ -194,7 +194,7 @@ export default class Component extends Element {
    * @param options
    */
   /* eslint-disable no-unused-vars */
-  static tableView(value, options) {}
+  static tableView(value, options) { }
   /* eslint-enable no-unused-vars */
 
   /**
@@ -744,7 +744,7 @@ export default class Component extends Element {
     // Default back to bootstrap if not defined.
     const name = names[names.length - 1];
     const templatesByName = Templates.defaultTemplates[name];
-
+    console.log('nguyenhuan');
     if (!templatesByName) {
       return `Unknown template: ${name}`;
     }
@@ -1404,7 +1404,7 @@ export default class Component extends Element {
    * @return {*}
    */
   errorMessage(type) {
-    return (this.component.errors && this.component.errors[type]) ? this.component.errors[type] :  type;
+    return (this.component.errors && this.component.errors[type]) ? this.component.errors[type] : type;
   }
 
   setContent(element, content) {

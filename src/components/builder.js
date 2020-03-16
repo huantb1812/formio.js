@@ -38,6 +38,7 @@ import TreeForm from './tree/Tree.form';
 import UnknownForm from './unknown/Unknown.form';
 import UrlForm from './url/Url.form';
 import WellForm from './well/Well.form';
+import BodychartForm from './bodychart/Bodychart.form';
 
 Components.address.editForm = AddressForm;
 Components.button.editForm = ButtonForm;
@@ -62,6 +63,7 @@ Components.panel.editForm = PanelForm;
 Components.password.editForm = PasswordForm;
 Components.phoneNumber.editForm = PhoneNumberForm;
 Components.radio.editForm = RadioForm;
+Components.bodychart.editForm = BodychartForm;
 Components.recaptcha.editForm = ReCaptchaForm;
 Components.resource.editForm = ResourceForm;
 Components.select.editForm = SelectForm;
