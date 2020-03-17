@@ -140,6 +140,7 @@ gulp.task('scripts-embed', gulp.series('formio.embed.min.js', 'formio.embed.js')
 gulp.task('scripts-contrib', build('contrib/index.js', 'formio.contrib.js'));
 
 gulp.task('jquery', () => gulp.src('./node_modules/jquery/dist/**/*.*').pipe(gulp.dest('./app/jquery')));
+gulp.task('jquery-imagemapster', () => gulp.src('./node_modules/jquery-imagemapster/dist/**/*.*').pipe(gulp.dest('./app/jquery-imagemapster')));
 gulp.task('fontawesome', () => gulp.src('./node_modules/font-awesome/**/*.*').pipe(gulp.dest('./app/fontawesome')));
 gulp.task('bootstrap', () => gulp.src('./node_modules/bootstrap/dist/**/*.*').pipe(gulp.dest('./app/bootstrap')));
 gulp.task('bootswatch', () => gulp.src('./node_modules/bootswatch/**/*.*').pipe(gulp.dest('./app/bootswatch')));
@@ -180,6 +181,7 @@ gulp.task('build', gulp.series(
   'package-version',
   gulp.parallel(
     'jquery',
+    'jquery-imagemapster',
     'timezones',
     'fontawesome',
     'bootstrap',

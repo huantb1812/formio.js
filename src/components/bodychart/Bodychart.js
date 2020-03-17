@@ -1,7 +1,12 @@
 import _ from 'lodash';
 import Field from '../_classes/field/Field';
 import $ from 'jquery';
-import human from './human';
+import HumanMapjs from './human-map';
+// import imagemapster from 'jquery-imagemapster';
+// $.fn.extend({
+//   mapster: imagemapster
+// });
+
 export default class BodychartComponent extends Field {
   static schema(...extend) {
     return Field.schema({
@@ -52,41 +57,80 @@ export default class BodychartComponent extends Field {
   }
 
   render() {
-    return super.render(this.renderTemplate('bodychart', {
+    console.log('render');
+    var t = super.render(this.renderTemplate('bodychart', {
       input: this.inputInfo,
       inline: this.component.inline,
       values: this.component.values,
       value: this.dataValue,
       row: this.row,
     }));
+    return t;
   }
 
   attach(element) {
+    console.log('attach');
     this.loadRefs(element, { input: 'multiple', wrapper: 'multiple' });
-    this.refs.input.forEach((input, index) => {
-      this.addEventListener(input, this.inputInfo.changeEvent, () => this.updateValue(null, {
-        modified: true,
-      }));
-      this.addShortcut(input, this.component.values[index].shortcut);
+    if (element.id) {
+      // var humanmapobj = new HumanMapjs(`#${element.id}`, null);
+      var humanmap = $(`#${element.id} .map`);
+      humanmap.check();
 
-      if (this.isBodychart) {
-        input.checked = (this.dataValue === input.value);
-        this.addEventListener(input, 'keyup', (event) => {
-          if (event.key === ' ' && this.dataValue === input.value) {
-            event.preventDefault();
+      //update
+      humanmap.render('huan');
 
-            this.updateValue(null, {
-              modified: true,
-            });
+      $(`#${element.id} .item`).click({ element }, (e) => {
+        var result = {
+          statelist: '',
+          conditions: ''
+        };
+        var scopeId = e.data.element.id;
+        console.log('click', scopeId, e.target.innerText);
+
+        // click statelist item
+        if (e.target.parentElement.classList.contains('statelist')) {
+          e.target.parentElement.children.forEach(stateitem => {
+            if (stateitem.classList.contains('actived')) {
+              stateitem.classList.remove('actived');
+            }
+          });
+          e.target.classList.add('actived');
+          var currentCondition = $(`#${scopeId} .conditions .item.actived`);
+          if (currentCondition && currentCondition.length > 0) {
+            currentCondition[0].classList.remove('actived');
           }
+        }
+
+        // click statelist item
+        else if (e.target.parentElement.classList.contains('conditions')) {
+          e.target.parentElement.children.forEach(stateitem => {
+            if (stateitem.classList.contains('actived')) {
+              stateitem.classList.remove('actived');
+            }
+          });
+          e.target.classList.add('actived');
+        }
+
+        var statelistActived = $(`#${scopeId} .statelist .item.actived`);
+        if (statelistActived && statelistActived.length > 0) {
+          result.statelist = statelistActived[0].innerText;
+        }
+
+        var conditionActived = $(`#${scopeId} .conditions .item.actived`);
+        if (conditionActived && conditionActived.length > 0) {
+          result.conditions = conditionActived[0].innerText;
+        }
+
+        this.updateValue(result, {
+          modified: true,
         });
-      }
-    });
-    $('input').check(element);
+      });
+    }
     return super.attach(element);
   }
 
   detach(element) {
+    console.log('detach');
     if (element && this.refs.input) {
       this.refs.input.forEach((input, index) => {
         this.removeShortcut(input, this.component.values[index].shortcut);
@@ -95,6 +139,7 @@ export default class BodychartComponent extends Field {
   }
 
   getValue() {
+    console.log('getValue');
     if (this.viewOnly || !this.refs.input || !this.refs.input.length) {
       return this.dataValue;
     }
@@ -108,6 +153,8 @@ export default class BodychartComponent extends Field {
   }
 
   getValueAsString(value) {
+    console.log('getValueAsString');
+
     if (!value) {
       return '';
     }
@@ -128,6 +175,8 @@ export default class BodychartComponent extends Field {
   }
 
   updateValue(value, flags) {
+    console.log('updateValue');
+
     const changed = super.updateValue(value, flags);
     if (changed && this.refs.wrapper) {
       //add/remove selected option class
@@ -169,6 +218,8 @@ export default class BodychartComponent extends Field {
    * @return {*}
    */
   normalizeValue(value) {
+    console.log('normalizeValue');
+
     const dataType = _.get(this.component, 'dataType', 'auto');
     switch (dataType) {
       case 'auto':

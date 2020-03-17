@@ -19,7 +19,7 @@
     "lint"
   ],
   "scripts": {
-    "build": "esdoc;gulp build",
+    "build": "gulp build",
     "transpile": "babel ./src/ --out-dir ./lib/",
     "templates": "gulp templates",
     "watch": "babel -w ./src/ --out-dir ./lib/",
@@ -71,6 +71,7 @@
     "i18next": "^19.3.2",
     "idb": "^5.0.1",
     "ismobilejs": "^1.0.3",
+    "jquery-imagemapster": "^1.2.10",
     "json-logic-js": "^1.2.2",
     "jstimezonedetect": "^1.0.7",
     "jwt-decode": "^2.2.0",

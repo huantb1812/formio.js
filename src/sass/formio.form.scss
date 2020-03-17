@@ -1,5 +1,5 @@
 $dialog-z-index: 10000;
-$autocomplete-in-dialog-z-index: $dialog-z-index + 1000;
+$autocomplete-in-dialog-z-index: $dialog-z-index+1000;
 
 .formio-form {
   position: relative;
@@ -40,9 +40,11 @@ $autocomplete-in-dialog-z-index: $dialog-z-index + 1000;
   .error {
     color: #dc3545;
   }
+
   .warning {
     color: #856404;
   }
+
   .info {
     color: #004085;
   }
@@ -85,7 +87,7 @@ $autocomplete-in-dialog-z-index: $dialog-z-index + 1000;
   top: 0;
   bottom: 0;
   border: none;
-  display:none;
+  display: none;
 }
 
 .formio-component-tags tags {
@@ -93,8 +95,8 @@ $autocomplete-in-dialog-z-index: $dialog-z-index + 1000;
 }
 
 .field-required:after {
-  content:" *";
-  color:red;
+  content: " *";
+  color: red;
 }
 
 .glyphicon-spin {
@@ -108,6 +110,7 @@ $autocomplete-in-dialog-z-index: $dialog-z-index + 1000;
   from {
     -moz-transform: rotate(0deg);
   }
+
   to {
     -moz-transform: rotate(360deg);
   }
@@ -117,6 +120,7 @@ $autocomplete-in-dialog-z-index: $dialog-z-index + 1000;
   from {
     -webkit-transform: rotate(0deg);
   }
+
   to {
     -webkit-transform: rotate(360deg);
   }
@@ -126,6 +130,7 @@ $autocomplete-in-dialog-z-index: $dialog-z-index + 1000;
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -159,7 +164,7 @@ $autocomplete-in-dialog-z-index: $dialog-z-index + 1000;
   background-color: #fff;
 }
 
-td > .form-group {
+td>.form-group {
   margin-bottom: 0;
 }
 
@@ -175,7 +180,7 @@ td > .form-group {
 }
 
 .btn.signature-pad-refresh {
-  position:absolute;
+  position: absolute;
   left: 0;
   top: 0;
   z-index: 1000;
@@ -192,7 +197,7 @@ td > .form-group {
   width: 100%;
 }
 
-.choices__list--dropdown .choices__item--selectable{
+.choices__list--dropdown .choices__item--selectable {
   padding-right: 0px;
 }
 
@@ -212,24 +217,26 @@ td > .form-group {
 
 .loader-wrapper {
   z-index: 1000;
-  position:absolute;
+  position: absolute;
   top: 0px;
   left: 0px;
   bottom: 0px;
   right: 0px;
-  background-color:rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .loader {
-  position:absolute;
+  position: absolute;
   left: 50%;
   top: 50%;
   margin-left: -30px;
   margin-top: -30px;
   z-index: 10000;
   display: inline-block;
-  border: 6px solid #f3f3f3; /* Light grey */
-  border-top: 6px solid #3498db; /* Blue */
+  border: 6px solid #f3f3f3;
+  /* Light grey */
+  border-top: 6px solid #3498db;
+  /* Blue */
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -237,8 +244,13 @@ td > .form-group {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .choices__list--dropdown {
@@ -261,9 +273,10 @@ td > .form-group {
 }
 
 /* fix for choices.js .choices__input container in rtl */
-.choices[dir="rtl"] > * {
+.choices[dir="rtl"]>* {
   text-align: right;
 }
+
 /* end fix for choices.js .choices__input container in rtl */
 
 /* fix for choices.js deletable items in rtl */
@@ -281,6 +294,7 @@ td > .form-group {
   border-right: 1px solid #008fa1;
   overflow: hidden;
 }
+
 /* end fix for choices.js deletable items in rtl */
 
 .formio-component-file .fileSelector {
@@ -293,12 +307,14 @@ td > .form-group {
   border-color: #127abe;
 }
 
-.formio-component-file .fileSelector .glyphicon, .formio-component-file .fileSelector .fa {
+.formio-component-file .fileSelector .glyphicon,
+.formio-component-file .fileSelector .fa {
   font-size: 20px;
   margin-right: 5px;
 }
 
-[dir="rtl"] .formio-component-file .fileSelector .fa, [dir="rtl"] .formio-component-file .fileSelector .glyphicon {
+[dir="rtl"] .formio-component-file .fileSelector .fa,
+[dir="rtl"] .formio-component-file .fileSelector .glyphicon {
   margin-right: unset;
   margin-left: 5px;
 }
@@ -381,8 +397,8 @@ td > .form-group {
 .formio-dialog.formio-dialog-disabled-animation,
 .formio-dialog.formio-dialog-disabled-animation .formio-dialog-overlay,
 .formio-dialog.formio-dialog-disabled-animation .formio-dialog-content {
-  -webkit-animation: none!important;
-  animation: none!important;
+  -webkit-animation: none !important;
+  animation: none !important;
 }
 
 .formio-dialog-overlay {
@@ -507,7 +523,7 @@ body.formio-dialog-open {
   animation: formio-dialog-flyin .5s;
   background: #f0f0f0;
   border-radius: 5px;
-  font-family: 'Helvetica',sans-serif;
+  font-family: 'Helvetica', sans-serif;
   font-size: 1.1em;
   line-height: 1.5em;
   margin: 0 auto;
@@ -638,7 +654,7 @@ body.formio-dialog-open {
 }
 
 .formio-placeholder {
-  position:absolute;
+  position: absolute;
   color: #999;
 }
 
@@ -780,8 +796,8 @@ body.formio-dialog-open {
   margin-left: 4px;
 }
 
-.formio-component-datetime .form-control[type="datetime-local"] ~ .input-group-addon,
-.formio-component-dateTime .form-control[type="datetime-local"] ~ .input-group-addon {
+.formio-component-datetime .form-control[type="datetime-local"]~.input-group-addon,
+.formio-component-dateTime .form-control[type="datetime-local"]~.input-group-addon {
   width: auto;
 }
 
@@ -852,20 +868,89 @@ body.formio-dialog-open {
 }
 
 .reset-margins {
-  html, body, div, span, applet, object, iframe,
-  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-  a, abbr, acronym, address, big, cite, code,
-  del, dfn, em, img, ins, kbd, q, s, samp,
-  small, strike, strong, sub, sup, tt, var,
-  b, u, i, center,
-  dl, dt, dd, ol, ul, li,
-  fieldset, form, label, legend,
-  table, caption, tbody, tfoot, thead, tr, th, td,
-  article, aside, canvas, details, embed,
-  figure, figcaption, footer, header, hgroup,
-  menu, nav, output, ruby, section, summary,
-  time, mark, audio, video {
-	  margin: 0;
+
+  html,
+  body,
+  div,
+  span,
+  applet,
+  object,
+  iframe,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  blockquote,
+  pre,
+  a,
+  abbr,
+  acronym,
+  address,
+  big,
+  cite,
+  code,
+  del,
+  dfn,
+  em,
+  img,
+  ins,
+  kbd,
+  q,
+  s,
+  samp,
+  small,
+  strike,
+  strong,
+  sub,
+  sup,
+  tt,
+  var,
+  b,
+  u,
+  i,
+  center,
+  dl,
+  dt,
+  dd,
+  ol,
+  ul,
+  li,
+  fieldset,
+  form,
+  label,
+  legend,
+  table,
+  caption,
+  tbody,
+  tfoot,
+  thead,
+  tr,
+  th,
+  td,
+  article,
+  aside,
+  canvas,
+  details,
+  embed,
+  figure,
+  figcaption,
+  footer,
+  header,
+  hgroup,
+  menu,
+  nav,
+  output,
+  ruby,
+  section,
+  summary,
+  time,
+  mark,
+  audio,
+  video {
+    margin: 0;
   }
 }
 
@@ -887,7 +972,7 @@ body.formio-dialog-open {
   display: none;
 }
 
-.datagrid-group-label.collapsed > td {
+.datagrid-group-label.collapsed>td {
   display: none;
 }
 
@@ -942,26 +1027,22 @@ body.formio-dialog-open {
   z-index: -1;
 }
 
-.has-error > .help-block {
+.has-error>.help-block {
   margin-top: 5px;
   margin-bottom: 10px;
 }
 
-.no-top-border-table
-  > .table
-  > tbody
-  > tr:first-child
-  > td {
+.no-top-border-table>.table>tbody>tr:first-child>td {
   border-top: none;
 }
 
-.table > tbody > tr > td.cell-align {
+.table>tbody>tr>td.cell-align {
   &-left {
     text-align: left;
   }
 
   &-center {
-    & > div {
+    &>div {
       margin-left: auto;
       margin-right: auto;
     }
@@ -970,14 +1051,15 @@ body.formio-dialog-open {
   }
 
   &-right {
-    & > div {
+    &>div {
       margin-left: auto;
     }
 
     text-align: right;
   }
 }
-.formio-component-textarea .alert .ck-editor__editable{
+
+.formio-component-textarea .alert .ck-editor__editable {
   color: inherit;
 }
 
@@ -985,32 +1067,42 @@ div[data-oembed-url] {
   width: 100%;
 }
 
-.radio label.label-position-left, .checkbox label.label-position-left,
-.radio label.label-position-top, .checkbox label.label-position-top,
-.radio label.label-position-bottom, .checkbox label.label-position-bottom {
+.radio label.label-position-left,
+.checkbox label.label-position-left,
+.radio label.label-position-top,
+.checkbox label.label-position-top,
+.radio label.label-position-bottom,
+.checkbox label.label-position-bottom {
   padding-left: 0;
 }
 
-.radio label.label-position-top span, .checkbox label.label-position-top span,
-.radio label.label-position-bottom span, .checkbox label.label-position-bottom span {
+.radio label.label-position-top span,
+.checkbox label.label-position-top span,
+.radio label.label-position-bottom span,
+.checkbox label.label-position-bottom span {
   display: block;
 }
 
-.radio label.label-position-top input[type="radio"], .checkbox label.label-position-top input[type="checkbox"],
-.radio label.label-position-bottom input[type="radio"], .checkbox label.label-position-bottom input[type="checkbox"] {
+.radio label.label-position-top input[type="radio"],
+.checkbox label.label-position-top input[type="checkbox"],
+.radio label.label-position-bottom input[type="radio"],
+.checkbox label.label-position-bottom input[type="checkbox"] {
   position: relative;
   margin-left: 0;
 }
 
-.radio label.label-position-top input[type="radio"], .checkbox label.label-position-top input[type="checkbox"] {
+.radio label.label-position-top input[type="radio"],
+.checkbox label.label-position-top input[type="checkbox"] {
   margin-top: 4px;
 }
 
-.radio label.label-position-bottom input[type="radio"], .checkbox label.label-position-bottom input[type="checkbox"] {
+.radio label.label-position-bottom input[type="radio"],
+.checkbox label.label-position-bottom input[type="checkbox"] {
   margin-bottom: 8px;
 }
 
-.radio label.label-position-left input[type="radio"], .checkbox label.label-position-left input[type="checkbox"] {
+.radio label.label-position-left input[type="radio"],
+.checkbox label.label-position-left input[type="checkbox"] {
   margin-left: 10px;
 }
 
@@ -1026,15 +1118,17 @@ div[data-oembed-url] {
   text-align: center;
   margin: 1em auto
 }
+
 /* ckeditor5-image/theme/image.css */
-.formio-component-content .image > img {
+.formio-component-content .image>img {
   display: block;
   margin: 0 auto;
   max-width: 100%;
   min-width: 50px;
 }
+
 /* ckeditor5-image/theme/imagecaption.css */
-.formio-component-content .image > figcaption {
+.formio-component-content .image>figcaption {
   display: table-caption;
   caption-side: bottom;
   word-break: break-word;
@@ -1044,20 +1138,24 @@ div[data-oembed-url] {
   font-size: .75em;
   outline-offset: -1px;
 }
+
 /* ckeditor5-image/theme/imageresize.css */
 .formio-component-content .image.image_resized {
   max-width: 100%;
   display: block;
   box-sizing: border-box
 }
+
 /* ckeditor5-image/theme/imageresize.css */
 .formio-component-content .image.image_resized img {
   width: 100%;
 }
+
 /* ckeditor5-image/theme/imageresize.css */
-.formio-component-content .image.image_resized > figcaption {
+.formio-component-content .image.image_resized>figcaption {
   display: block;
 }
+
 /* ckeditor5-media-embed/theme/mediaembed.css */
 .formio-component-content .media {
   clear: both;
@@ -1065,42 +1163,63 @@ div[data-oembed-url] {
   display: block;
   min-width: 15em;
 }
+
 /* ckeditor5-image/theme/imagestyle.css */
-.formio-component-content .image-style-side:not(.image_resized), .formio-component-content .image-style-align-left:not(.image_resized), .formio-component-content .image-style-align-center:not(.image_resized), .formio-component-content .image-style-align-right:not(.image_resized) {
+.formio-component-content .image-style-side:not(.image_resized),
+.formio-component-content .image-style-align-left:not(.image_resized),
+.formio-component-content .image-style-align-center:not(.image_resized),
+.formio-component-content .image-style-align-right:not(.image_resized) {
   max-width: 50%;
 }
+
 /* ckeditor5-image/theme/imagestyle.css */
-.formio-component-content .image-style-side:not(.image_resized), .formio-component-content .image-style-align-left:not(.image_resized), .formio-component-content .image-style-align-center:not(.image_resized), .formio-component-content .image-style-align-right:not(.image_resized) {
+.formio-component-content .image-style-side:not(.image_resized),
+.formio-component-content .image-style-align-left:not(.image_resized),
+.formio-component-content .image-style-align-center:not(.image_resized),
+.formio-component-content .image-style-align-right:not(.image_resized) {
   max-width: 50%;
 }
+
 /* ckeditor5-image/theme/imagestyle.css */
-.formio-component-content .image-style-side:not(.image_resized), .formio-component-content .image-style-align-left:not(.image_resized), .formio-component-content .image-style-align-center:not(.image_resized), .formio-component-content .image-style-align-right:not(.image_resized) {
+.formio-component-content .image-style-side:not(.image_resized),
+.formio-component-content .image-style-align-left:not(.image_resized),
+.formio-component-content .image-style-align-center:not(.image_resized),
+.formio-component-content .image-style-align-right:not(.image_resized) {
   max-width: 50%;
 }
+
 /* ckeditor5-image/theme/imagestyle.css */
-.formio-component-content .image-style-side:not(.image_resized), .formio-component-content .image-style-align-left:not(.image_resized), .formio-component-content .image-style-align-center:not(.image_resized), .formio-component-content .image-style-align-right:not(.image_resized) {
+.formio-component-content .image-style-side:not(.image_resized),
+.formio-component-content .image-style-align-left:not(.image_resized),
+.formio-component-content .image-style-align-center:not(.image_resized),
+.formio-component-content .image-style-align-right:not(.image_resized) {
   max-width: 50%;
 }
+
 /* ckeditor5-image/theme/imagestyle.css */
 .formio-component-content .image-style-side {
   float: right;
   margin-left: var(--ck-image-style-spacing);
 }
+
 /* ckeditor5-image/theme/imagestyle.css */
 .formio-component-content .image-style-align-left {
   float: left;
   margin-right: var(--ck-image-style-spacing);
 }
+
 /* ckeditor5-image/theme/imagestyle.css */
 .formio-component-content .image-style-align-center {
   margin-left: auto;
   margin-right: auto;
 }
+
 /* ckeditor5-image/theme/imagestyle.css */
 .formio-component-content .image-style-align-right {
   float: right;
   margin-left: var(--ck-image-style-spacing);
 }
+
 /* ckeditor5-block-quote/theme/blockquote.css */
 .formio-component-content blockquote {
   overflow: hidden;
@@ -1111,6 +1230,7 @@ div[data-oembed-url] {
   font-style: italic;
   border-left: solid 5px hsl(0, 0%, 80%);
 }
+
 /* ckeditor5-block-quote/theme/blockquote.css */
 .formio-component-content[dir="rtl"] blockquote {
   border-left: 0;
@@ -1118,10 +1238,10 @@ div[data-oembed-url] {
 }
 
 .formio-component-address.formio-component-label-hidden {
-  & > label.field-required {
+  &>label.field-required {
     z-index: 1;
 
-    & ~ .address-autocomplete-container .address-autocomplete-remove-value-icon {
+    &~.address-autocomplete-container .address-autocomplete-remove-value-icon {
       right: 20px;
     }
   }
@@ -1152,13 +1272,13 @@ div[data-oembed-url] {
   z-index: $autocomplete-in-dialog-z-index;
 }
 
-.autocomplete > div {
+.autocomplete>div {
   cursor: pointer;
   padding: 6px 10px;
 }
 
-.autocomplete > div:hover:not(.group),
-.autocomplete > div.selected {
+.autocomplete>div:hover:not(.group),
+.autocomplete>div.selected {
   background: #1e90ff;
   color: #ffffff;
 }
@@ -1181,4 +1301,58 @@ div[data-oembed-url] {
   .component-rendering-hidden {
     visibility: hidden;
   }
+}
+
+// bodychart css
+.card-title {
+  text-transform: capitalize;
+}
+
+.statelist,
+.conditions {
+  width: 100%;
+  overflow-y: auto;
+  height: 500px;
+}
+
+/*statelist*/
+.statelist .item,
+.conditions .item {
+  display: block;
+  background: #f1f1f1;
+  padding: 8px;
+}
+
+.statelist .item:hover,
+.conditions .item:hover {
+  background-color: #555;
+  color: white;
+  cursor: pointer;
+}
+
+.statelist .item.actived,
+.conditions .item.actived {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.statelist .item.visibility,
+.conditions .item.visibility {
+  display: none;
+}
+
+.statelist .item,
+.conditions .item {
+  margin-bottom: 0;
+}
+
+
+
+/* .conditions */
+.conditions.no-record {
+  text-align: center;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
 }
