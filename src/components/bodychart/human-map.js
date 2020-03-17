@@ -32,18 +32,6 @@ var constant = {
 
 $.fn.extend({
     human: constant.human,
-    check: (data) => {
-        console.log('check', data);
-        // return this.each(() => {
-        //     this.checked = true;
-        // });
-    },
-    uncheck: (data) => {
-        console.log('uncheck', data);
-        // return this.each(() => {
-        //     this.checked = false;
-        // });
-    },
     render: (data) => {
         const human = constant.human;
 
@@ -54,7 +42,7 @@ $.fn.extend({
             const key = arrs[k];
             for (let i = 0; i < human[key].length; i++) {
                 statelist
-                    += `<label class="item state-item ${key} " name="state_value" group_data="${key}" >
+                    += `<label class="item state-item ${key} visibility" name="state_value" group_data="${key}" >
                             ${human[key][i]}
                         </label>`;
             }
@@ -68,38 +56,13 @@ $.fn.extend({
             const key = arrs2[k];
             for (let i = 0; i < human.conditionsItems[key].length; i++) {
                 conditions
-                    += `<label class="item condition-item ${key} " name="condition_value" group_data="${key}" >
+                    += `<label class="item condition-item ${key} visibility" name="condition_value" group_data="${key}" >
                             ${human.conditionsItems[key][i]}
                         </label>`;
             }
         }
         $('.conditions').html(conditions);
-
-        //fire event return data when click state item or condition item
-        // $(`#${data.element.id} .item`).bind('click', { elementId: data.element.id }, (e) => {
-        //     // click statelist item
-        //     if (e.target.parentElement.classList.contains('statelist')) {
-        //         e.target.parentElement.children.forEach(stateitem => {
-        //             stateitem.classList.remove('actived');
-        //         });
-        //         e.target.classList.add('actived');
-        //         $('.conditions .item.actived').classList.remove('actived');
-        //     }
-
-        //     // click statelist item
-        //     if (e.target.parentElement.classList.contains('conditions')) {
-        //         e.target.parentElement.children.forEach(stateitem => {
-        //             stateitem.classList.remove('actived');
-        //         });
-        //         e.target.classList.add('actived');
-        //     }
-
-        //     var result = {
-        //         statelist: $(`#${e.data.elementId} .statelist .item.actived`).innerText,
-        //         conditions: $(`#${e.data.elementId} .conditions .item.actived`).innerText
-        //     };
-        // });
-    }
+    },
 });
 
 function HumanMap(container, userConfig) {

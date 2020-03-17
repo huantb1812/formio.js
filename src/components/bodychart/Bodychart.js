@@ -2,10 +2,7 @@ import _ from 'lodash';
 import Field from '../_classes/field/Field';
 import $ from 'jquery';
 import HumanMapjs from './human-map';
-// import imagemapster from 'jquery-imagemapster';
-// $.fn.extend({
-//   mapster: imagemapster
-// });
+import imagemapster from '../../utils/JqueryImagemapsterWrapper';
 
 export default class BodychartComponent extends Field {
   static schema(...extend) {
@@ -72,13 +69,9 @@ export default class BodychartComponent extends Field {
     console.log('attach');
     this.loadRefs(element, { input: 'multiple', wrapper: 'multiple' });
     if (element.id) {
-      // var humanmapobj = new HumanMapjs(`#${element.id}`, null);
       var humanmap = $(`#${element.id} .map`);
-      humanmap.check();
-
       //update
       humanmap.render('huan');
-
       $(`#${element.id} .item`).click({ element }, (e) => {
         var result = {
           statelist: '',
@@ -98,6 +91,17 @@ export default class BodychartComponent extends Field {
           var currentCondition = $(`#${scopeId} .conditions .item.actived`);
           if (currentCondition && currentCondition.length > 0) {
             currentCondition[0].classList.remove('actived');
+          }
+
+          //filter conditions by statelist
+          var conditions = $(`#${scopeId} .conditions`);
+          conditions[0].children.forEach(condition => {
+            condition.classList.add('visibility');
+          });
+
+          var currentConditionOfStatelist = $(`#${scopeId} .conditions .item.${e.target.innerText.toLowerCase()}`);
+          for (let i = 0; i < currentConditionOfStatelist.length; i++) {
+            currentConditionOfStatelist[i].classList.remove('visibility');
           }
         }
 
@@ -125,6 +129,38 @@ export default class BodychartComponent extends Field {
           modified: true,
         });
       });
+      var options = {
+        fillColor: 'ff0000',
+        stroke: true,
+        singleSelect: true,
+        fillOpacity: 0.2,
+        mapKey: 'data-state',
+        onClick: (e) => {
+          //hidden all item
+          document.querySelectorAll(`${this.statelistSelector} .item`).forEach(option => {
+            option.classList.add('visibility');
+          });
+          document.querySelectorAll(`${this.statelistSelector} .item.${e.key.toLowerCase()}`).forEach(option => {
+            option.classList.remove('visibility');
+            option.addEventListener('click', () => {
+              const currentActived = document.querySelector(`${this.statelistSelector} .item.actived`);
+              if (currentActived) {
+                currentActived.classList.remove('actived');
+              }
+              setTimeout(() => {
+                option.classList.add('actived');
+                const key = option.querySelector('input').value;
+                this.showMenuChild(key);
+              }, 100);
+            });
+          });
+
+          document.querySelectorAll(`${this.conditionsSelector} .item`).forEach(option => {
+            option.classList.add('visibility');
+          });
+        },
+      };
+      // $(`#${element.id} .map`).mapster(options);
     }
     return super.attach(element);
   }
