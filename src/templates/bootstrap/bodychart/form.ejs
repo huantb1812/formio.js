@@ -1,5 +1,4 @@
 <div class="form-bodychart bodychart">
-  {% ctx.values.forEach(function(item) { %}
   <div class="form-bodychart{{ctx.inline ? '-inline' : ''}}" ref="wrapper">
     <div class="container">
       <div class="card">
@@ -10,8 +9,8 @@
               <div class="col-3">
                 <img class="map"
                   src="https://www.singhealth.com.sg/_catalogs/masterPage/SHRevamp2017/assets/img/placeholder-body--big.png"
-                  width="142" height="414" usemap="#bodychart">
-                <map name="bodychart">
+                  width="142" height="414" usemap="#bodychart{{ctx.component.id}}">
+                <map name="bodychart{{ctx.component.id}}">
                   <area target="_self" alt="HEAD" title="HEAD" href="#" name="head" data-state="HEAD"
                     data-full="head head"
                     coords="35,68,43,65,49,63,55,60,57,54,57,47,54,41,51,34,50,26,49,19,51,12,54,6,60,3,62,2,68,0,75,0,80,2,84,4,89,8,92,13,93,17,93,24,92,31,91,37,90,40,87,45,85,50,86,56,90,62,96,64,107,67"
@@ -73,5 +72,4 @@
 
     </div>
   </div>
-  {% }) %}
 </div>
