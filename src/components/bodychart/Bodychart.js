@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import Field from '../_classes/field/Field';
-
+import $ from 'jquery';
+import human from './human';
 export default class BodychartComponent extends Field {
   static schema(...extend) {
     return Field.schema({
@@ -17,7 +18,7 @@ export default class BodychartComponent extends Field {
     return {
       title: 'Bodychart',
       group: 'basic',
-      icon: 'dot-circle-o',
+      icon: 'male',
       weight: 80,
       documentation: 'http://help.form.io/userguide/#bodychart',
       schema: BodychartComponent.schema()
@@ -81,6 +82,7 @@ export default class BodychartComponent extends Field {
         });
       }
     });
+    $('input').check(element);
     return super.attach(element);
   }
 

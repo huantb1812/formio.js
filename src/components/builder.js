@@ -63,7 +63,6 @@ Components.panel.editForm = PanelForm;
 Components.password.editForm = PasswordForm;
 Components.phoneNumber.editForm = PhoneNumberForm;
 Components.radio.editForm = RadioForm;
-Components.bodychart.editForm = BodychartForm;
 Components.recaptcha.editForm = ReCaptchaForm;
 Components.resource.editForm = ResourceForm;
 Components.select.editForm = SelectForm;
@@ -80,5 +79,6 @@ Components.tree.editForm = TreeForm;
 Components.unknown.editForm = UnknownForm;
 Components.url.editForm = UrlForm;
 Components.well.editForm = WellForm;
+Components.bodychart.editForm = BodychartForm;
 
 export default Components;
