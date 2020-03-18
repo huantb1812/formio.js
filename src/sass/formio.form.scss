@@ -1304,48 +1304,93 @@ div[data-oembed-url] {
 }
 
 // bodychart css
+$color-bg:#40E0D0;
+$color-bg1:#00B3A1;
+$height:458px;
+
 .card-title {
   text-transform: capitalize;
+}
+
+.progress-title {
+  background-color: $color-bg;
+  padding: 10px 20px;
+
+  .number {
+    display: inline-block;
+    background-color: #fff;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 1em;
+    text-align: center;
+    line-height: 1.5em;
+    color: #39dbc5;
+    font-weight: 700;
+  }
+
+  .title {
+    display: inline-block;
+    font-weight: 600;
+    margin-left: 5px;
+  }
+}
+
+.progress-title:nth-child(2) {
+  background-color: $color-bg1;
+}
+
+.first-col,
+.second-col,
+.third-col {
+  padding: 10px 0;
+  border-right: none;
+  border-left: 2px solid #00B3A1;
+  border-bottom: 2px solid #00B3A1;
+  border-top: none;
+  height: $height;
+  background: #fff;
+}
+
+.first-col {
+  display: flex;
+  justify-content: center;
+}
+
+.third-col {
+  border-right: 2px solid #00B3A1;
 }
 
 .statelist,
 .conditions {
   width: 100%;
-  overflow-y: auto;
-  height: 500px;
-}
 
-/*statelist*/
-.statelist .item,
-.conditions .item {
-  display: block;
-  background: #f1f1f1;
-  padding: 8px;
-}
+  .item {
+    display: block;
+    background: #f1f1f1;
+    padding: 8px;
+    margin-bottom: 0;
 
-.statelist .item:hover,
-.conditions .item:hover {
-  background-color: #555;
-  color: white;
-  cursor: pointer;
-}
+    &:hover {
+      background-color: #555;
+      color: white;
+      cursor: pointer;
+    }
 
-.statelist .item.actived,
-.conditions .item.actived {
-  background-color: #4CAF50;
-  color: white;
-}
+    &.actived {
+      background-color: #4CAF50;
+      color: white;
+    }
 
-.statelist .item.visibility,
-.conditions .item.visibility {
-  display: none;
+    &.visibility {
+      display: none;
+    }
+  }
 }
-
-.statelist .item,
-.conditions .item {
-  margin-bottom: 0;
+.statelist, .conditions {
+  width: 100%;
+  // height: 438px;
+  overflow-y: hidden;
 }
-
 /* .conditions */
 .conditions.no-record {
   text-align: center;
