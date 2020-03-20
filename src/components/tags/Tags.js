@@ -24,9 +24,9 @@ export default class TagsComponent extends Input {
     };
   }
 
-  init() {
-    super.init();
-  }
+  // init() {
+  //   super.init();
+  // }
 
   get emptyValue() {
     return (this.component.storeas === 'string') ? '' : [];
