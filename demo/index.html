@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='libs/bootstrap.min.css'>
+    <link rel='stylesheet' href='formio.full.css'>
+</head>
+
+<body>
+    <div class="card card-body bg-light">
+        <div id="builder"></div>
+    </div>
+    <h4>Rendered Form</h4>
+    <div class="card card-body bg-light">
+        <div id="formio"></div>
+    </div>
+    <h4>Submission Data</h4>
+    <div class="card card-body bg-light jsonviewer">
+        <pre id="json"></pre>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <input type="text" name="xxx" id="xxx">
+        </div>
+    </div>
+
+    <script src='formio.full.js'></script>
+    <script type='text/javascript'>
+        Formio.builder(document.getElementById('builder'), {}).then(function (builder) {
+            Formio.createForm(document.getElementById('formio'), {}).then(function (instance) {
+                var json = document.getElementById('json');
+                instance.on('change', function () {
+                    json.innerHTML = '';
+                    json.appendChild(document.createTextNode(JSON.stringify(instance.submission, null, 4)));
+                });
+                builder.on('change', function (schema) {
+                    if (schema.components) {
+                        instance.form = schema;
+                        // head-Ear-Cochlear Implant
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

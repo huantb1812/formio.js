@@ -180,7 +180,7 @@ export default class SelectComponent extends Field {
    */
   addOption(value, label, attrs = {}, id) {
     const option = {
-      value: _.isObject(value) ? value :  _.isNull(value) ? this.emptyValue : String(value),
+      value: _.isObject(value) ? value : _.isNull(value) ? this.emptyValue : String(value),
       label: label
     };
 
@@ -415,6 +415,7 @@ export default class SelectComponent extends Field {
     Formio.makeRequest(this.options.formio, 'select', url, method, body, options)
       .then((response) => {
         this.loading = false;
+        console.log('makeRequest select');
         this.setItems(response, !!search);
       })
       .catch((err) => {
@@ -910,7 +911,8 @@ export default class SelectComponent extends Field {
         groupId: -1,
         customProperties: null,
         placeholder: true,
-        keyCode: null });
+        keyCode: null
+      });
     }
   }
 
@@ -1168,11 +1170,11 @@ export default class SelectComponent extends Field {
 
   isInitApiCallNeeded(hasValue) {
     return this.component.lazyLoad &&
-    !this.lazyLoadInit &&
-    !this.active &&
-    !this.selectOptions.length &&
-    hasValue &&
-    this.visible && (this.component.searchField || this.component.valueProperty);
+      !this.lazyLoadInit &&
+      !this.active &&
+      !this.selectOptions.length &&
+      hasValue &&
+      this.visible && (this.component.searchField || this.component.valueProperty);
   }
 
   setChoicesValue(value, hasPreviousValue) {
@@ -1181,7 +1183,7 @@ export default class SelectComponent extends Field {
     if (this.choices) {
       // Now set the value.
       if (hasValue) {
-          this.choices.removeActiveItems();
+        this.choices.removeActiveItems();
         // Add the currently selected choices if they don't already exist.
         const currentChoices = Array.isArray(value) ? value : [value];
         if (!this.addCurrentChoices(currentChoices, this.selectOptions, true)) {
@@ -1249,14 +1251,14 @@ export default class SelectComponent extends Field {
         items,
         valueProperty,
       } = this.component.dataSrc === 'values'
-        ? {
-          items: this.component.data.values,
-          valueProperty: 'value',
-        }
-        : {
-          items: this.getCustomItems(),
-          valueProperty: this.valueProperty,
-        };
+          ? {
+            items: this.component.data.values,
+            valueProperty: 'value',
+          }
+          : {
+            items: this.getCustomItems(),
+            valueProperty: this.valueProperty,
+          };
 
       value = (this.component.multiple && Array.isArray(value))
         ? _.filter(items, (item) => value.includes(item.value))

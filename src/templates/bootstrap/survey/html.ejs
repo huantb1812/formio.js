@@ -4,13 +4,21 @@
     <tr>
       <th>{{ctx.t(question.label)}}</th>
       <td>
-      {% ctx.component.values.forEach(function(item) { %}
+        {% ctx.component.values.forEach(function(item) { %}
         {% if (ctx.value && ctx.value.hasOwnProperty(question.value) && ctx.value[question.value] === item.value) { %}
-          {{ctx.t(item.label)}}
+        {{ctx.t(item.label)}}
         {% } %}
-      {% }) %}
+        {% }) %}
       </td>
     </tr>
     {% }) %}
   </tbody>
 </table>
+<div class="row">
+  <h1>html</h1>
+  <p>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur facere laborum beatae deleniti
+    unde voluptates
+    ullam, impedit vitae ipsam, temporibus hic iste repellat qui odit quod laudantium ratione, deserunt repudiandae.
+  </p>
+</div>

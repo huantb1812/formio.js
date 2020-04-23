@@ -146,7 +146,7 @@ gulp.task('bootstrap', () => gulp.src('./node_modules/bootstrap/dist/**/*.*').pi
 gulp.task('bootswatch', () => gulp.src('./node_modules/bootswatch/**/*.*').pipe(gulp.dest('./app/bootswatch')));
 
 // Copy the version and dependencies into the distribution package.json file.
-gulp.task('package-version', function() {
+gulp.task('package-version', function () {
   const pkg = require('./package.json');
   return gulp.src([
     'src/package.json'
@@ -157,7 +157,8 @@ gulp.task('package-version', function() {
 });
 
 // Copy over the dist folder into the lib folder.
-gulp.task('dist', () => gulp.src(['dist/**/*.*']).pipe(gulp.dest('lib/dist')));
+gulp.task('dist', () => gulp.src(['dist/**/*.*']).pipe(gulp.dest('dist')));
+gulp.task('demo', () => gulp.src(['dist/formio.full.js', 'dist/formio.full.css']).pipe(gulp.dest('demo')));
 
 // Copy over the types folder and index.d.ts into the lib folder.
 gulp.task('types-index', () => gulp.src(['index.d.ts']).pipe(gulp.dest('lib')));
@@ -199,8 +200,9 @@ gulp.task('build', gulp.series(
     'scripts-full'
   ),
   'dist',
+  'demo',
   'types',
-  'readme'
+  'readme',
 ));
 
 // Create a new build (scripts only)
@@ -223,3 +225,11 @@ gulp.task('watch-rebuild', () => gulp.watch(['./src/*.js', './src/**/*.js'], gul
 
 // Default task. Build and watch.
 gulp.task('default', gulp.series('babel', 'scripts-full', 'watch'));
+
+// gulp.task('copy', ['clean'], () => {
+//   return gulp.src([
+//     'dist/**/*.*'
+//   ], {
+//     base: 'other'
+//   }).pipe(gulp.dest('build'));
+// });

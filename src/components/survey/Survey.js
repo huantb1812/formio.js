@@ -6,6 +6,7 @@ import Formio from '../../Formio';
 import NativePromise from 'native-promise-only';
 
 export default class SurveyComponent extends Field {
+  idx = 0;
   static schema(...extend) {
     return Field.schema({
       type: 'survey',
@@ -17,7 +18,6 @@ export default class SurveyComponent extends Field {
   }
 
   static get builderInfo() {
-    console.log('builderInfo');
     return {
       title: 'Survey',
       group: 'advanced',
@@ -29,23 +29,35 @@ export default class SurveyComponent extends Field {
   }
 
   get defaultSchema() {
-    console.log('defaultSchema');
+    console.log('Survey ', this.id, this.idx++);
     return SurveyComponent.schema();
   }
+
   init() {
+    console.log('Survey ', this.id, this.idx++);
     super.init();
     // this.itemsLoaded = new NativePromise((resolve) => {
     //   console.log('call itemsLoadedResolve', resolve);
     //   this.itemsLoadedResolve = resolve;
     // });
-  }
-  render() {
-    console.log('render');
-    return super.render(this.renderTemplate('survey'));
+    this.itemsLoaded = new NativePromise((resolve) => {
+      this.itemsLoadedResolve = resolve;
+    });
   }
 
-  attach(element) {
-    console.log('attach');
+  get dataReady() {
+    return this.itemsLoaded;
+  }
+
+  render() {
+    console.log('Survey ', this.id, this.idx++);
+    var survey = this.renderTemplate('survey');
+    var result = super.render(survey);
+    return result;
+  }
+
+  attach(element, recall = false) {
+    console.log('Survey ', this.id, this.idx++);
     this.loadRefs(element, { input: 'multiple' });
     const superAttach = super.attach(element);
     this.refs.input.forEach((input) => {
@@ -59,12 +71,14 @@ export default class SurveyComponent extends Field {
       }
     });
     this.setValue(this.dataValue);
-    this.updateItems(true);
+    if (this.component.dataSrc === 'url' && recall === false) {
+      this.updateItems(element);
+    }
     return superAttach;
   }
 
   setValue(value, flags) {
-    console.log('setValue');
+    console.log('Survey ', this.id, this.idx++);
     flags = flags || {};
     if (!value) {
       return false;
@@ -81,11 +95,12 @@ export default class SurveyComponent extends Field {
   }
 
   get emptyValue() {
+    console.log('Survey ', this.id, this.idx++);
     return {};
   }
 
   getValue() {
-    console.log('getValue');
+    console.log('Survey ', this.id, this.idx++);
     if (this.viewOnly || !this.refs.input || !this.refs.input.length) {
       return this.dataValue;
     }
@@ -102,6 +117,7 @@ export default class SurveyComponent extends Field {
   }
 
   set disabled(disabled) {
+    console.log('Survey ', this.id, this.idx++);
     super.disabled = disabled;
     _.each(this.refs.input, (input) => {
       input.disabled = true;
@@ -109,10 +125,12 @@ export default class SurveyComponent extends Field {
   }
 
   get disabled() {
+    console.log('Survey ', this.id, this.idx++);
     return super.disabled;
   }
 
   validateRequired(setting, value) {
+    console.log('Survey ', this.id, this.idx++);
     if (!boolValue(setting)) {
       return true;
     }
@@ -121,69 +139,52 @@ export default class SurveyComponent extends Field {
   }
 
   getInputName(question) {
-    console.log('getInputName');
+    console.log('Survey ', this.id, this.idx++);
     return `${this.options.name}[${question.value}]`;
   }
 
-  updateItems(forceUpdate) {
-    console.log('updateItems');
-    switch (this.component.dataSrc) {
-      case 'url': {
-        if (!forceUpdate && !this.active) {
-          // If we are lazyLoading, wait until activated.
-          return;
-        }
-        let { url } = this.component.data;
-        let method;
-        let body;
+  updateItems(element) {
+    console.log('Survey ', this.id, this.idx++);
+    let { url } = this.component.data;
+    let method;
+    let body;
 
-        if (url.startsWith('/')) {
-          // if URL starts with '/project', we should use base URL to avoid issues with URL formed like <base_url>/<project_name>/project/<project_id>/...
-          const baseUrl = url.startsWith('/project') ? Formio.getBaseUrl() : Formio.getProjectUrl() || Formio.getBaseUrl();
-          url = baseUrl + url;
-        }
+    if (url.startsWith('/')) {
+      // if URL starts with '/project', we should use base URL to avoid issues with URL formed like <base_url>/<project_name>/project/<project_id>/...
+      const baseUrl = url.startsWith('/project') ? Formio.getBaseUrl() : Formio.getProjectUrl() || Formio.getBaseUrl();
+      url = baseUrl + url;
+    }
 
-        if (!this.component.data.method) {
-          method = 'GET';
+    if (url && url !== '') {
+      if (!this.component.data.method) {
+        method = 'GET';
+      }
+      else {
+        method = this.component.data.method;
+        if (method.toUpperCase() === 'POST') {
+          body = this.component.data.body;
         }
         else {
-          method = this.component.data.method;
-          if (method.toUpperCase() === 'POST') {
-            body = this.component.data.body;
-          }
-          else {
-            body = null;
-          }
+          body = null;
         }
-        const options = this.component.authenticate ? {} : { noToken: true };
-        this.loadItems(url, this.requestHeaders, options, method, body);
-        break;
       }
+      const options = this.component.authenticate ? {} : { noToken: true };
+      this.loadItems(url, this.requestHeaders, options, method, body, element);
     }
   }
 
-  loadItems(url, headers, options, method, body) {
-    console.log('loadItems', url, headers, options, method, body);
+  loadItems(url, headers, options, method, body, element) {
+    console.log('Survey ', this.id, this.idx++);
     options = options || {};
-
-    // See if they have not met the minimum search requirements.
-    const minSearch = parseInt(this.component.minSearch, 10);
-    if (
-      this.component.searchField &&
-      (minSearch > 0)
-    ) {
-      // Set empty items.
-      return this.setItems([]);
-    }
 
     // Ensure we have a method and remove any body if method is get
     method = method || 'GET';
     if (method.toUpperCase() === 'GET') {
       body = null;
     }
-
-    const limit = this.component.limit || 9999;
-    const skip = this.isScrollLoading ? this.selectOptions.length : 0;
+    //hard code
+    const limit = 10;
+    const skip = 0;
     const query = (this.component.dataSrc === 'url') ? {} : {
       limit,
       skip,
@@ -224,16 +225,11 @@ export default class SurveyComponent extends Field {
     Formio.makeRequest(this.options.formio, 'select', url, method, body, options)
       .then((response) => {
         this.loading = false;
-        this.setItems(response);
+        this.setItems(response, element);
       })
       .catch((err) => {
-        if (this.isInfiniteScrollProvided) {
-          this.setItems([]);
-        }
-
-        this.isScrollLoading = false;
+        this.setItems([], element);
         this.loading = false;
-        // this.itemsLoadedResolve();
         this.emit('componentError', {
           component: this.component,
           message: err.toString(),
@@ -243,9 +239,9 @@ export default class SurveyComponent extends Field {
   }
 
   /* eslint-disable max-statements */
-  setItems(items) {
+  setItems(items, element) {
     // If the items is a string, then parse as JSON.
-    console.log('setItems');
+    console.log('Survey ', this.id, this.idx++);
     if (typeof items == 'string') {
       try {
         items = JSON.parse(items);
@@ -255,16 +251,21 @@ export default class SurveyComponent extends Field {
         items = [];
       }
     }
+    //hard code
     const questions = [];
     const values = [{ label: 'yes', id: 'yes' }, { label: 'no', id: 'no' }];
+
     for (let i = 0; i < 10; i++) {
-      const q = items[i];
-      questions.push({ label: q.title, value: q.id });
+      questions.push({ label: `title ${i}`, value: `title ${i}` });
     }
 
     this.component.questions = questions;
     this.component.values = values;
-    this.setValue(this.dataValue);
+    // var survey = this.renderTemplate('survey');
+    console.log('setItems');
     this.render();
+    // this.setValue(this.dataValue);
+    // this.render();
+    // this.attach(element, true);
   }
 }

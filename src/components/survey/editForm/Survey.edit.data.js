@@ -16,10 +16,6 @@ export default [
       values: [
         { label: 'Values', value: 'values' },
         { label: 'URL', value: 'url' },
-        { label: 'Resource', value: 'resource' },
-        { label: 'Custom', value: 'custom' },
-        { label: 'Raw JSON', value: 'json' },
-        { label: 'IndexedDB', value: 'indexeddb' },
       ],
     },
   },
@@ -56,17 +52,17 @@ export default [
       return context.data.template;
     }
   },
-  {
-    type: 'textarea',
-    as: 'json',
-    editor: 'ace',
-    weight: 28,
-    input: true,
-    key: 'customOptions',
-    label: 'Choices.js options',
-    tooltip: 'A raw JSON object to use as options for the Select component (Choices JS).',
-    defaultValue: {},
-  },
+  // {
+  //   type: 'textarea',
+  //   as: 'json',
+  //   editor: 'ace',
+  //   weight: 28,
+  //   input: true,
+  //   key: 'customOptions',
+  //   label: 'Choices.js options',
+  //   tooltip: 'A raw JSON object to use as options for the Select component (Choices JS).',
+  //   defaultValue: {},
+  // },
   {
     type: 'datagrid',
     input: true,
@@ -75,7 +71,7 @@ export default [
     tooltip: 'The questions you would like to ask in this survey question.',
     weight: 0,
     reorder: true,
-    defaultValue: [{ label: '', value: '' }],
+    defaultValue: [],
     components: [
       {
         label: 'Label',
@@ -104,7 +100,7 @@ export default [
     tooltip: 'The values that can be selected per question. Example: \'Satisfied\', \'Very Satisfied\', etc.',
     weight: 1,
     reorder: true,
-    defaultValue: [{ label: '', value: '' }],
+    defaultValue: [],
     components: [
       {
         label: 'Label',
